@@ -13,8 +13,8 @@ echo -e "\nINSTALLING AUR SOFTWARE\n"
 
 echo "CLONING: YAY"
 cd ~
-git clone "https://aur.archlinux.org/yay.git"
-cd ${HOME}/yay
+git clone "https://aur.archlinux.org/yay-bin.git"
+cd ${HOME}/yay-bin
 makepkg -si --noconfirm
 cd ~
 touch "$HOME/.cache/zshhistory"
@@ -25,9 +25,9 @@ ln -s "$HOME/zsh/.zshrc" $HOME/.zshrc
 PKGS=(
 'autojump'
 'awesome-terminal-fonts'
-'brave-bin' # Brave Browser
+'firefox-nightly' # Brave Browser
 'dxvk-bin' # DXVK DirectX to Vulcan
-'github-desktop-bin' # Github Desktop sync
+#'github-desktop-bin' # Github Desktop sync
 'lightly-git'
 'lightlyshaders-git'
 'mangohud' # Gaming FPS Counter
@@ -39,16 +39,16 @@ PKGS=(
 'nordic-theme'
 'noto-fonts-emoji'
 'papirus-icon-theme'
-'plasma-pa'
+#'plasma-pa'
 'ocs-url' # install packages from websites
 'sddm-nordic-theme-git'
-'snapper-gui-git'
+#'snapper-gui-git'
 'ttf-droid'
 'ttf-hack'
 'ttf-meslo' # Nerdfont package
 'ttf-roboto'
-'zoom' # video conferences
-'snap-pac'
+#'zoom' # video conferences
+#'snap-pac'
 )
 
 for PKG in "${PKGS[@]}"; do

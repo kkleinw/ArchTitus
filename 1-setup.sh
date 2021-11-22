@@ -32,14 +32,14 @@ fi
 echo "-------------------------------------------------"
 echo "       Setup Language to US and set locale       "
 echo "-------------------------------------------------"
-sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sed -i 's/^#de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-timedatectl --no-ask-password set-timezone America/Chicago
+timedatectl --no-ask-password set-timezone Europe/Berlin
 timedatectl --no-ask-password set-ntp 1
-localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
+localectl --no-ask-password set-locale LANG="de_DE.UTF-8" LC_TIME="de_DE.UTF-8"
 
 # Set keymaps
-localectl --no-ask-password set-keymap us
+localectl --no-ask-password set-keymap de
 
 # Add sudo no password rights
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
@@ -82,9 +82,9 @@ PKGS=(
 'breeze-gtk'
 'bridge-utils'
 'btrfs-progs'
-'celluloid' # video players
+#'celluloid' # video players
 'cmatrix'
-'code' # Visual Studio code
+#'code' # Visual Studio code
 'cronie'
 'cups'
 'dialog'
@@ -117,10 +117,10 @@ PKGS=(
 'htop'
 'iptables-nft'
 'jdk-openjdk' # Java 17
-'kate'
+#'kate'
 'kcodecs'
 'kcoreaddons'
-'kdeplasma-addons'
+#'kdeplasma-addons'
 'kde-gtk-config'
 'kinfocenter'
 'kscreen'
@@ -161,9 +161,10 @@ PKGS=(
 'powerdevil'
 'powerline-fonts'
 'print-manager'
-'pulseaudio'
-'pulseaudio-alsa'
-'pulseaudio-bluetooth'
+'pipewire'
+#'pulseaudio'
+#'pulseaudio-alsa'
+#'pulseaudio-bluetooth'
 'python-notify2'
 'python-psutil'
 'python-pyqt5'
@@ -185,7 +186,7 @@ PKGS=(
 'unrar'
 'unzip'
 'usbutils'
-'vim'
+'notepadqq'
 'virt-manager'
 'virt-viewer'
 'wget'
@@ -197,9 +198,6 @@ PKGS=(
 'xdg-user-dirs'
 'zeroconf-ioslave'
 'zip'
-'zsh'
-'zsh-syntax-highlighting'
-'zsh-autosuggestions'
 )
 
 for PKG in "${PKGS[@]}"; do
