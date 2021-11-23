@@ -30,7 +30,7 @@ echo "Changing the compression settings for "$nc" cores."
 sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T $nc -z -)/g" /etc/makepkg.conf
 fi
 echo "-------------------------------------------------"
-echo "       Setup Language to US and set locale       "
+echo "       Setup Language to DE and set locale       "
 echo "-------------------------------------------------"
 sed -i 's/^#de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
@@ -245,6 +245,8 @@ then
     chown -R $username: /home/$username/ArchTitus
 	read -p "Please name your machine:" nameofmachine
 	echo $nameofmachine > /etc/hostname
+    useradd -m -G libvirt -s /bin/bash steam
+	passwd steam
 else
 	echo "You are already a user proceed with aur installs"
 fi
