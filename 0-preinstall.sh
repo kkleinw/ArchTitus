@@ -78,6 +78,50 @@ ls /mnt | xargs btrfs subvolume delete
 btrfs subvolume create /mnt/@
 umount /mnt
 ;;
+
+
+# second drive
+
+
+echo "-------------------------------------------------"
+echo "-------select your disk to format----------------"
+echo "-------------------------------------------------"
+lsblk
+echo "Please enter disk to work on: (example /dev/sda)"
+read DISK
+echo "THIS WILL FORMAT AND DELETE ALL DATA ON THE DISK"
+read -p "are you sure you want to continue (Y/N):" formatdisk
+case $formatdisk in
+
+y|Y|yes|Yes|YES)
+echo "--------------------------------------"
+echo -e "\nFormatting disk...\n$HR"
+echo "--------------------------------------"
+
+# disk prep 2
+sgdisk -Z ${DISK} # zap all on disk 2
+sgdisk -a 2048 -o ${DISK} # new gpt disk 2048 alignment
+
+# create partitions 2
+sgdisk -n 3::-0 --typecode=1:8300 --change-name=1:'HOME' ${DISK} # partition 1 (HOME), default start, remaining
+
+
+
+
+# make filesystems 2
+echo -e "\nCreating Filesystems...\n$HR"
+mkfs.btrfs -L "ROOT" "${DISK}1" -f
+mount -t btrfs "${DISK}1" /mnt
+
+ls /mnt | xargs btrfs subvolume delete
+btrfs subvolume create /mnt/@
+umount /mnt
+;;
+
+
+# End second drive
+
+
 *)
 echo "Rebooting in 3 Seconds ..." && sleep 1
 echo "Rebooting in 2 Seconds ..." && sleep 1
